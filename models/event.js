@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   event.init(
     {
       title: { type: DataTypes.STRING, allowNull: false },
-      description: { type: DataTypes.STRING, allowNull: false },
+      description: { type: DataTypes.STRING(1000), allowNull: false },
       date: { type: DataTypes.STRING, allowNull: false },
       place: { type: DataTypes.STRING, allowNull: false },
       mainImage: { type: DataTypes.STRING, allowNull: false },
