@@ -17,21 +17,21 @@ app.use(bodyParserMiddleWare);
 
 app.use("/auth", authRouter);
 app.use("/events", eventsRouter);
-// app.use("/products", productRouter);
+
 
 // POST endpoint which requires a token for testing purposes, can be removed
 app.post("/authorized_post_request", authMiddleWare, (req, res) => {
-  // accessing user that was added to req by the auth middleware
-  const user = req.user;
+  // accessing artist that was added to req by the auth middleware
+  const artist = req.artist;
   // don't send back the password hash
-  delete user.dataValues["password"];
+  delete artist.dataValues["password"];
 
   res.json({
     youPosted: {
       ...req.body,
     },
-    userFoundWithToken: {
-      ...user.dataValues,
+    artistFoundWithToken: {
+      ...artist.dataValues,
     },
   });
 });
