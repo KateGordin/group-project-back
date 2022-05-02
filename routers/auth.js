@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const { Router } = require("express");
 const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
-const User = require("../models/").user;
+const Artist = require("../models/").artist;
 const { SALT_ROUNDS } = require("../config/constants");
 
 const router = new Router();
@@ -17,17 +17,17 @@ router.post("/login", async (req, res, next) => {
         .send({ message: "Please provide both email and password" });
     }
 
-    const user = await User.findOne({ where: { email } });
+    const artist = await Artist.findOne({ where: { email } });
 
-    if (!user || !bcrypt.compareSync(password, user.password)) {
+    if (!artist || !bcrypt.compareSync(password, artist.password)) {
       return res.status(400).send({
-        message: "User with that email not found or password incorrect",
+        message: "Artist with that email not found or password incorrect",
       });
     }
 
-    delete user.dataValues["password"]; // don't send back the password hash
-    const token = toJWT({ userId: user.id });
-    return res.status(200).send({ token, ...user.dataValues });
+    delete artist.dataValues["password"]; // don't send back the password hash
+    const token = toJWT({ artistId: artist.id });
+    return res.status(200).send({ token, ...artist.dataValues });
   } catch (error) {
     console.log(error);
     return res.status(400).send({ message: "Something went wrong, sorry" });
@@ -41,17 +41,17 @@ router.post("/signup", async (req, res) => {
   }
 
   try {
-    const newUser = await User.create({
+    const newArtist = await Artist.create({
       email,
       password: bcrypt.hashSync(password, SALT_ROUNDS),
       name,
     });
 
-    delete newUser.dataValues["password"]; // don't send back the password hash
+    delete newArtist.dataValues["password"]; // don't send back the password hash
 
-    const token = toJWT({ userId: newUser.id });
+    const token = toJWT({ artistId: newArtist.id });
 
-    res.status(201).json({ token, ...newUser.dataValues });
+    res.status(201).json({ token, ...newArtist.dataValues });
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
       return res
@@ -68,8 +68,8 @@ router.post("/signup", async (req, res) => {
 // - checking if a token is (still) valid
 router.get("/me", authMiddleware, async (req, res) => {
   // don't send back the password hash
-  delete req.user.dataValues["password"];
-  res.status(200).send({ ...req.user.dataValues });
+  delete req.artist.dataValues["password"];
+  res.status(200).send({ ...req.artist.dataValues });
 });
 
 module.exports = router;
