@@ -4,7 +4,7 @@ const corsMiddleWare = require("cors");
 const authMiddleWare = require("./auth/middleware");
 const authRouter = require("./routers/auth");
 const { PORT } = require("./config/constants");
-const productRouter = require("./routers/product");
+// const productRouter = require("./routers/product");
 
 // Create an express app
 const app = express();
