@@ -138,7 +138,7 @@ module.exports = {
           date: "03/06/2022",
           place: "Den Bosch",
           mainImage:
-            "https://www.isalatheater.nl/cms_files/system/images/img14051_174.jpg",
+            "https://cdn.filestackcontent.com/resize=width:720,fit:max/output=f:pjpg,quality:75/5RkksfW3QV6CROKLORGO",
           createdAt: new Date(),
           updatedAt: new Date(),
           artistId: 7,

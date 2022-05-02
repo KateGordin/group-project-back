@@ -35,7 +35,7 @@ router.post("/login", async (req, res, next) => {
 });
 
 router.post("/signup", async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password, name, isArtist } = req.body;
   if (!email || !password || !name) {
     return res.status(400).send("Please provide an email, password and a name");
   }
@@ -45,6 +45,9 @@ router.post("/signup", async (req, res) => {
       email,
       password: bcrypt.hashSync(password, SALT_ROUNDS),
       name,
+      isArtist,
+      image:
+        "https://www.royalunibrew.com/wp-content/uploads/2021/07/blank-profile-picture-973460_640.png",
     });
 
     delete newArtist.dataValues["password"]; // don't send back the password hash
