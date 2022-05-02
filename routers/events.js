@@ -6,10 +6,11 @@ const Tickets = require("../models").ticket;
 
 router.get("/", async (req, res, next) => {
   try {
-    const events = await Events.findAll({ include: { model: Tickets } });
+    const events = await Events.findAll({ include: [Tickets] });
     if (!events || events === 0) {
-      return res.status(404).send({ message: "experience not found" });
+      return res.status(404).send({ message: "Events not found" });
     }
+    console.log(events);
     res.status(200).send({
       events,
     });
