@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   image.init(
     {
-      image: DataTypes.STRING,
+      image: {type: DataTypes.STRING(1000)},
     },
     {
       sequelize,

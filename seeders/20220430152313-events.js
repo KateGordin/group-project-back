@@ -144,7 +144,7 @@ module.exports = {
           artistId: 7,
         },
         {
-          title: "Art Exhibition by Carlo Tozzi",
+          title: "Art Exhibition by    */Carlo Tozzi",
           description:
             "Carlo Tozzi will show all his fantastic modern art paintings at the fantastic Design Museum Den Bosch",
           date: "03/06/2022",
@@ -184,11 +184,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete("events", null, {});
   },
 };
