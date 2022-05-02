@@ -5,6 +5,7 @@ const authMiddleWare = require("./auth/middleware");
 const authRouter = require("./routers/auth");
 const eventsRouter = require("./routers/events");
 const { PORT } = require("./config/constants");
+
 // Create an express app
 const app = express();
 
