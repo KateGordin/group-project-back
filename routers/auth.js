@@ -4,13 +4,10 @@ const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
 const Artist = require("../models/").artist;
 const { SALT_ROUNDS } = require("../config/constants");
-
 const router = new Router();
-
 router.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
     if (!email || !password) {
       return res
         .status(400)
@@ -33,13 +30,11 @@ router.post("/login", async (req, res, next) => {
     return res.status(400).send({ message: "Something went wrong, sorry" });
   }
 });
-
 router.post("/signup", async (req, res) => {
   const { email, password, name, isArtist } = req.body;
   if (!email || !password || !name) {
     return res.status(400).send("Please provide an email, password and a name");
   }
-
   try {
     const newArtist = await Artist.create({
       email,
@@ -61,18 +56,15 @@ router.post("/signup", async (req, res) => {
         .status(400)
         .send({ message: "There is an existing account with this email" });
     }
-
     return res.status(400).send({ message: "Something went wrong, sorry" });
   }
 });
-
 // The /me endpoint can be used to:
-// - get the users email & name using only their token
+// - get the artists email & name using only their token
 // - checking if a token is (still) valid
 router.get("/me", authMiddleware, async (req, res) => {
   // don't send back the password hash
   delete req.artist.dataValues["password"];
   res.status(200).send({ ...req.artist.dataValues });
 });
-
 module.exports = router;

@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   ticket.init(
     {
-      type: { type: DataTypes.STRING, allowNull: false },
       price: { type: DataTypes.INTEGER, allowNull: false },
       numberAvailable: DataTypes.INTEGER,
     },
