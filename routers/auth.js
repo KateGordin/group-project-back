@@ -13,7 +13,9 @@ router.post("/login", async (req, res, next) => {
         .status(400)
         .send({ message: "Please provide both email and password" });
     }
+
     const artist = await Artist.findOne({ where: { email } });
+
     if (!artist || !bcrypt.compareSync(password, user.password)) {
       return res.status(400).send({
         message: "User with that email not found or password incorrect",
@@ -38,8 +40,11 @@ router.post("/signup", async (req, res) => {
       password: bcrypt.hashSync(password, SALT_ROUNDS),
       name,
     });
+
     delete newArtist.dataValues["password"]; // don't send back the password hash
+
     const token = toJWT({ artistId: newArtist.id });
+
     res.status(201).json({ token, ...newArtist.dataValues });
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
