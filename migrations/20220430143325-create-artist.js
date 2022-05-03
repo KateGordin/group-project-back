@@ -26,6 +26,7 @@ module.exports = {
       },
       isArtist: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
