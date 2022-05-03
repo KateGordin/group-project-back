@@ -9,7 +9,7 @@ const Artists = require("../models").artist;
 //All event page
 router.get("/", async (req, res, next) => {
   try {
-    const events = await Events.findAll({ include: [Tickets] });
+    const events = await Events.findAll({ include: [Tickets, Artists] });
     if (!events || events === 0) {
       return res.status(404).send({ message: "Events not found" });
     }
