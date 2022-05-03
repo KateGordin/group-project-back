@@ -53,6 +53,7 @@ router.post("/login", async (req, res, next) => {
       email: artist.email,
       image: artist.image,
       isArtist: artist.isArtist,
+      isArtist: true,
       event: artist.events, // Just select the first space
     });
   } catch (error) {
@@ -113,6 +114,7 @@ router.get("/me", authMiddleware, async (req, res) => {
     email: artist.email,
     image: artist.image,
     isArtist: artist.isArtist,
+
     event: artist.events,
   });
 });
