@@ -164,7 +164,7 @@ module.exports = {
            latitude: '51.686044096884245',
       longitude: ' 5.303941892720974',
           mainImage:
-            "https://www.isalatheater.nl/cms_files/system/images/img14051_174.jpg",
+            "https://cdn.filestackcontent.com/resize=width:720,fit:max/output=f:pjpg,quality:75/5RkksfW3QV6CROKLORGO",
           createdAt: new Date(),
           updatedAt: new Date(),
           artistId: 7,
