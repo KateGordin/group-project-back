@@ -28,7 +28,8 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
-    const getEvent = await Events.findByPk(id);
+    const getEvent = await Events.findByPk(id, { include: [Images] });
+
     if (!getEvent || getEvent.length === 0) {
       return res.status(404).send({ message: "event not found" });
     }
