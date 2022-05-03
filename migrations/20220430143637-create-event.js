@@ -20,8 +20,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      place: {
-        allowNull: false,
+      address: {
+        type: Sequelize.STRING,
+      },
+      latitude: {
+        type: Sequelize.STRING,
+      },
+      longitude: {
         type: Sequelize.STRING,
       },
       mainImage: {
