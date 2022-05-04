@@ -1,10 +1,12 @@
 const { Router } = require("express");
 const auth = require("../auth/middleware");
+const secrets = require("../config/secrets");
 const router = new Router();
 const Events = require("../models").event;
 const Images = require("../models").image;
 const Tickets = require("../models").ticket;
 const Artists = require("../models").artist;
+const stripe = require("stripe")(secrets.stripe.secret);
 
 //All event page
 router.get("/", async (req, res, next) => {
@@ -56,6 +58,12 @@ router.post("/buyticket", async (req, res, next) => {
     if (numberOfTickets < 1 || numberOfTickets > ticket.numberAvailable) {
       return res.status(400).send("Wrong number of tickets");
     }
+
+    await stripe.charges.create({
+      amount: ticket.price * numberOfTickets,
+      currency: "eur",
+      description: `ticket for event ${ticket.eventId}`,
+    });
 
     const updatedTicket = await ticket.update({
       numberAvailable: ticket.numberAvailable - numberOfTickets,
