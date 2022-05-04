@@ -28,12 +28,40 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
-    const getEvent = await Events.findByPk(id, { include: [Images] });
+    const getEvent = await Events.findByPk(id, { include: [Images, Tickets] });
 
     if (!getEvent || getEvent.length === 0) {
       return res.status(404).send({ message: "event not found" });
     }
     res.status(200).send(getEvent);
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
+
+router.post("/buyticket", async (req, res, next) => {
+  try {
+    const { ticketId, numberOfTickets } = req.body;
+    const ticket = await Tickets.findByPk(ticketId);
+    console.log("ticket", { ticketId, numberOfTickets });
+    if (!ticket) {
+      return res.status(400).send("This ticket does not exist");
+    }
+
+    if (ticket.numberAvailable < 1) {
+      return res.status(400).send("Oops tickets are sold out");
+    }
+
+    if (numberOfTickets < 1 || numberOfTickets > ticket.numberAvailable) {
+      return res.status(400).send("Wrong number of tickets");
+    }
+
+    const updatedTicket = await ticket.update({
+      numberAvailable: ticket.numberAvailable - numberOfTickets,
+    });
+
+    res.send(updatedTicket);
   } catch (e) {
     console.log(e.message);
     next(e);
