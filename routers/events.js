@@ -87,9 +87,9 @@ router.patch("/:id", auth, async (req, res) => {
   }
   const { name, email, image, about } = req.body;
 
-  const result = await artist.update({ name, email, image, about });
+  await artist.update({ name, email, image, about });
 
-  return res.status(200).send(result);
+  return res.status(200).send(artist);
 });
 
 //post event
