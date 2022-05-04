@@ -32,6 +32,10 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false,
       },
+      spotifyUrl: {
+        type: Sequelize.STRING,
+        allownull: true,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
