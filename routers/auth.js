@@ -2,8 +2,8 @@ const bcrypt = require("bcrypt");
 const { Router } = require("express");
 const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
-const Artist = require("../models/").artist;
-const Event = require("../models/").event;
+const Artist = require("../models").artist;
+const Event = require("../models").event;
 const Ticket = require("../models").ticket;
 const Image = require("../models").image;
 const { SALT_ROUNDS } = require("../config/constants");
@@ -53,6 +53,7 @@ router.post("/login", async (req, res, next) => {
       email: artist.email,
       image: artist.image,
       isArtist: artist.isArtist,
+      about: artist.about,
       event: artist.events, // Just select the first space
     });
   } catch (error) {
@@ -75,6 +76,7 @@ router.post("/signup", async (req, res) => {
       isArtist,
       image:
         "https://www.royalunibrew.com/wp-content/uploads/2021/07/blank-profile-picture-973460_640.png",
+      about: "Hi All",
     });
 
     delete newArtist.dataValues["password"]; // don't send back the password hash
@@ -91,6 +93,8 @@ router.post("/signup", async (req, res) => {
     return res.status(400).send({ message: "Something went wrong, sorry" });
   }
 });
+
+
 
 // The /me endpoint can be used to:
 // - get the artists email & name using only their token
@@ -113,6 +117,7 @@ router.get("/me", authMiddleware, async (req, res) => {
     email: artist.email,
     image: artist.image,
     isArtist: artist.isArtist,
+    about: artist,
     event: artist.events,
   });
 });

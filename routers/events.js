@@ -13,7 +13,7 @@ router.get("/", async (req, res, next) => {
     if (!events || events === 0) {
       return res.status(404).send({ message: "Events not found" });
     }
-    console.log(events);
+    //console.log(events);
     res.status(200).send({
       events,
     });
@@ -77,9 +77,9 @@ router.patch("/:id", auth, async (req, res) => {
       .status(403)
       .send({ message: "You are not authorized to update this profile" });
   }
-  const { name, email, image } = req.body;
+  const { name, email, image, about } = req.body;
 
-  const result = await artist.update({ name, email, image });
+  const result = await artist.update({ name, email, image, about });
 
   return res.status(200).send(result);
 });
@@ -91,7 +91,7 @@ router.post("/newEvent", auth, async (req, res) => {
     description,
     mainImage,
     date,
-    place,
+    address,
     images,
     seat,
     ticketPrice,
@@ -112,8 +112,10 @@ router.post("/newEvent", auth, async (req, res) => {
     description,
     mainImage,
     date,
-    place,
+    address,
     artistId: req.artist.id,
+    latitude: "52.083187818037594",
+    longitude: "5.626321682555803",
   });
 
   const imagesWithEventId = images
@@ -147,7 +149,7 @@ router.delete("/:id", async (req, res, next) => {
     const { id } = req.params;
 
     const eventToDelete = await Events.findByPk(parseInt(id));
-    console.log("event to delete", eventToDelete);
+    //console.log("event to delete", eventToDelete);
 
     if (!eventToDelete) {
       return res.status(404).send("no event found");
@@ -166,4 +168,21 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+////get all artist details
+router.get("/artist/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const artist = await Artists.findByPk(id);
+    if (!artist || artist === 0) {
+      return res.status(404).send({ message: "Artist not found" });
+    }
+    //console.log(artist);
+    res.status(200).send({
+      artist,
+    });
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+});
 module.exports = router;
