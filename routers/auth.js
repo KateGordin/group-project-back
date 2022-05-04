@@ -54,7 +54,8 @@ router.post("/login", async (req, res, next) => {
       image: artist.image,
       isArtist: artist.isArtist,
       about: artist.about,
-      event: artist.events, // Just select the first space
+      spotifyUrl: artist.spotifyUrl,
+      event: artist.events,
     });
   } catch (error) {
     console.log(error);
@@ -94,8 +95,6 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-
-
 // The /me endpoint can be used to:
 // - get the artists email & name using only their token
 // - checking if a token is (still) valid
@@ -117,7 +116,8 @@ router.get("/me", authMiddleware, async (req, res) => {
     email: artist.email,
     image: artist.image,
     isArtist: artist.isArtist,
-    about: artist,
+    about: artist.about,
+    spotifyUrl: artist.spotifyUrl,
     event: artist.events,
   });
 });
