@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       password: { type: DataTypes.STRING, allowNull: false },
       image: { type: DataTypes.STRING, allowNull: false },
       about: { type: DataTypes.TEXT, allowNull: false },
+      spotifyUrl: { type: DataTypes.STRING, allownull: true },
       isArtist: { type: DataTypes.BOOLEAN, allowNull: false },
     },
     {
