@@ -6,7 +6,7 @@ const Events = require("../models").event;
 const Images = require("../models").image;
 const Tickets = require("../models").ticket;
 const Artists = require("../models").artist;
-const stripe = require("stripe")(secrets.stripe.secret);
+const stripe = require("stripe")(secrets.stripe.key);
 
 //All event page
 router.get("/", async (req, res, next) => {
