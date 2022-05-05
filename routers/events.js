@@ -63,6 +63,7 @@ router.post("/buyticket", async (req, res, next) => {
       amount: ticket.price * numberOfTickets,
       currency: "eur",
       description: `ticket for event ${ticket.eventId}`,
+      source: "pm_1KvzDiFmQ75pA8Sy9q7clZHo",
     });
 
     const updatedTicket = await ticket.update({
