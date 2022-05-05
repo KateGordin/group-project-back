@@ -27,7 +27,7 @@ module.exports = {
           image:
             "https://partyflock.nl/images/artist/128041_1440x1440_586811/Remme.webp",
           about:
-            "remme (21) began writing music when he was 12 years old and has been working on his songs ever since, commuting between his hometown Eindhoven and Berlin, where his studio and record label (Universal) is located. His influences include Frank Ocean, Fleetwood Mac, Bruce Springsteen, but also Jeff Buckley and Justin Bieber. ",
+          "Remme (21) began writing music when he was 12 years old and has been working on his songs ever since, commuting between his hometown Eindhoven and Berlin, where his studio and record label (Universal) is located. His influences include Frank Ocean, Fleetwood Mac, Bruce Springsteen, but also Jeff Buckley and Justin Bieber. ",
           spotifyUrl: "2yqHVMUJy2Wxl7HVsp4Se5",
           isArtist: true,
           createdAt: new Date(),

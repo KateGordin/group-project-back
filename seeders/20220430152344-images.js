@@ -24,22 +24,21 @@ module.exports = {
         eventId: 2,
       },
       {
-        image:
-          "https://res.cloudinary.com/daokf4bsg/image/upload/v1651436680/Artists/Screenshot_from_2022-05-01_22-21-48_uwh2km.png",
+        image: "https://i.ytimg.com/vi/4s52C6Uu_fk/maxresdefault.jpg",
         createdAt: new Date(),
         updatedAt: new Date(),
         eventId: 2,
       },
       {
         image:
-          "https://scontent-ams4-1.xx.fbcdn.net/v/t39.30808-6/277810495_1536079143460248_8559269128132891_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=QPg_iNzrdgQAX_VfGr1&_nc_ht=scontent-ams4-1.xx&oh=00_AT8OPNI0L_l3aVYSl-i1bgUODKEvBrfIhhbxPefgliEltQ&oe=62734FDE",
+          "https://media.nu.nl/m/eh1x8n9ayd0i_xwd1280.jpg/flemming-vindt-tweede-nederlandstalige-single-iets-vetter-dan-amsterdam.jpg",
         createdAt: new Date(),
         updatedAt: new Date(),
         eventId: 3,
       },
       {
         image:
-          "https://scontent-amt2-1.xx.fbcdn.net/v/t39.30808-6/277579056_5625425520804923_5205845646921747909_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=VuTiiKg2kN8AX9NAXha&_nc_ht=scontent-amt2-1.xx&oh=00_AT9d_vd9JVoA55qQajS2eon1oU9L0b8R6VkolY9XVZrcKg&oe=6273A132",
+          "https://images.ctfassets.net/3p0bn61n86ty/5AetIfnNkVLuZP9eMk6DRG/92ce40839289957074673f71396d6cb0/MicrosoftTeams-image__34_.png?fit=thumb&w=1200&h=675&fm=jpg",
         createdAt: new Date(),
         updatedAt: new Date(),
         eventId: 3,
@@ -52,7 +51,7 @@ module.exports = {
       },
       {
         image:
-          "https://i1.sndcdn.com/artworks-ngtwYbjj0djelzJm-jry28Q-t500x500.jpg",
+          "https://api.omroepbrabant.nl/img/f/768/432/0.5/0.5/bWVkaWEvcHJvZC80MDc4MjEzLmpwZz9zdj0yMDE5LTA3LTA3JnN0PTIwMjAtMDEtMDFUMDAlM0EwMCUzQTAwWiZzZT0yMDQwLTAxLTAxVDAwJTNBMDAlM0EwMFomc3I9YiZzcD1yJnNpZz1ZSHc2QkdMS1VZREVGR0tIT0oxR3NIUUQxMDN5NzlvNTJYMkhzNzJiaUZzJTNE",
         createdAt: new Date(),
         updatedAt: new Date(),
         eventId: 4,
