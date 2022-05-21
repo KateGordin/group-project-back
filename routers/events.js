@@ -6,7 +6,7 @@ const Events = require("../models").event;
 const Images = require("../models").image;
 const Tickets = require("../models").ticket;
 const Artists = require("../models").artist;
-const stripe = require("stripe")(secrets.stripe.key);
+const stripe = require("stripe")(secrets.stripe.secret);
 
 //All event page
 router.get("/", async (req, res, next) => {
@@ -44,7 +44,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/buyticket", async (req, res, next) => {
   try {
-    const { ticketId, numberOfTickets } = req.body;
+    const { ticketId, numberOfTickets, token } = req.body;
     const ticket = await Tickets.findByPk(ticketId);
     console.log("ticket", { ticketId, numberOfTickets });
     if (!ticket) {
@@ -60,10 +60,10 @@ router.post("/buyticket", async (req, res, next) => {
     }
 
     await stripe.charges.create({
-      amount: ticket.price * numberOfTickets,
+      amount: ticket.price * 100 * numberOfTickets,
       currency: "eur",
       description: `ticket for event ${ticket.eventId}`,
-      source: "pm_1KvzDiFmQ75pA8Sy9q7clZHo",
+      source: token.id,
     });
 
     const updatedTicket = await ticket.update({

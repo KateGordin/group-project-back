@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const corsMiddleWare = require("cors");
 // Auth middleware: our own code. Checks for the existence of a token in a header called `authentication`.
@@ -17,7 +18,6 @@ app.use(bodyParserMiddleWare);
 
 app.use("/auth", authRouter);
 app.use("/events", eventsRouter);
-
 
 // POST endpoint which requires a token for testing purposes, can be removed
 app.post("/authorized_post_request", authMiddleWare, (req, res) => {
